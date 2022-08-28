@@ -1,0 +1,118 @@
+<!--<mat-card>-->
+<!--	<mat-card-title style="margin-bottom: 25px">Войдите для работы</mat-card-title>-->
+<!--	<div></div>-->
+<!--	<mat-card-content>-->
+<!--		<form [formGroup]="form" (ngSubmit)="onSubmit()">-->
+<!--			<p>-->
+<!--				<ng-template matStepLabel>Введите email</ng-template>-->
+<!--				<mat-form-field>-->
+<!--					<input matInput placeholder="Email" formControlName="email" required>-->
+<!--				</mat-form-field>-->
+<!--			</p>-->
+
+<!--			<p>-->
+<!--				<ng-template matStepLabel>Введите пароль</ng-template>-->
+<!--				<mat-form-field>-->
+<!--					<input matInput placeholder="Password" formControlName="password" required>-->
+<!--				</mat-form-field>-->
+<!--			</p>-->
+
+<!--			&lt;!&ndash;			<p class="error">&ndash;&gt;-->
+<!--			&lt;!&ndash;				{{ 1 }}&ndash;&gt;-->
+<!--			&lt;!&ndash;			</p>&ndash;&gt;-->
+
+<!--			<div class="button" >-->
+<!--				<button type="submit" [disabled]="form.invalid" mat-button>Login</button>-->
+<!--			</div>-->
+<!--			<div class="form-group">-->
+<!--				<p style="text-align: center;margin-top: 10px">-->
+<!--					Нет аккаунта? <a [routerLink]="'/registration'">Зарегистрироваться!</a>-->
+<!--				</p>-->
+<!--			</div>-->
+
+<!--		</form>-->
+<!--	</mat-card-content>-->
+<!--</mat-card>-->
+
+<p class="text-xs-center">Войдите для работы</p>
+<!--<div-->
+<!--		@fade-->
+<!--		class="alert alert-{{message.type}}"-->
+<!--		*ngIf="message.text"-->
+<!--&gt;{{message.text}}</div>-->
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div
+    class="form-group"
+    [ngClass]="{
+      'has-error': form.get('email')?.invalid && form.get('email')?.touched
+    }"
+  >
+    <label for="email">Email</label>
+    <input
+      type="text"
+      class="form-control underlined"
+      id="email"
+      placeholder="Введите ваш email"
+      formControlName="email"
+    />
+    <span
+      class="form-help-text"
+      *ngIf="form.get('email')?.invalid && form.get('email')?.touched"
+    >
+      <span *ngIf="form.get('email')?.['errors']?.['required']">
+        Email не может быть пустым
+      </span>
+      <span *ngIf="form.get('email')?.['errors']?.['email']">
+        Введите корректный Email
+      </span>
+    </span>
+  </div>
+  <div
+    class="form-group"
+    [ngClass]="{
+      'has-error':
+        form.get('password')?.invalid && form.get('password')?.touched
+    }"
+  >
+    <label for="password">Пароль</label>
+    <input
+      autocomplete="on"
+      type="password"
+      class="form-control underlined"
+      id="password"
+      placeholder="Пароль"
+      formControlName="password"
+    />
+    <span
+      class="form-help-text"
+      *ngIf="form.get('password')?.invalid && form.get('password')?.touched"
+    >
+      <span *ngIf="form.get('password')?.['errors']?.['required']">
+        Пароль не может быть пустым
+      </span>
+      <span
+        *ngIf="form.get('password')?.['errors']?.['minlength'] && form.get('password')?.['errors']?.['minlength']?.['requiredLength']"
+      >
+        Пароль должен быть больше
+        {{form.get('password')?.['errors']?.['minlength']?.['requiredLength']}}
+        символов. Сейчас
+        {{form.get('password')?.['errors']?.['minlength']?.['actualLength']}}.
+      </span>
+    </span>
+  </div>
+  <div class="form-group">
+    <button
+      style="border-radius: 5px"
+      type="submit"
+      class="btn btn-block btn-primary"
+      [disabled]="form.invalid"
+    >
+      Войти
+    </button>
+  </div>
+  <div class="form-group">
+    <p class="text-muted text-xs-center">
+      Нет аккаунта? <a [routerLink]="'/registration'">Зарегистрироваться!</a>
+    </p>
+  </div>
+</form>
