@@ -1,8 +1,0 @@
-<!--<div class="posts"-->
-<!--	 *ngIf="user$ | async as users">-->
-
-<!--	<p *ngFor="let user of users"-->
-<!--			  >{{user.email}}</p>-->
-<!--</div>-->
-<p *ngIf="user$">Здравствуйте, {{ user$.name }}</p>
-<button (click)="getUser()">GetUser</button>

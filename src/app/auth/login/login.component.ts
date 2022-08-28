@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
       .then((user) => {
         console.log('reg', user);
         localStorage.setItem('ActiveUserEmail', email);
-        this.router.navigate(['/system/sidenav']);
+        this.router.navigate(['/system']);
       })
       .catch(function (error) {
         if (error.code === 'auth/wrong-password') {

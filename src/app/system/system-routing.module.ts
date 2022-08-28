@@ -1,31 +1,30 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 
-import { SystemComponent } from './system.component';
-import { SidenavComponent } from './sidenav/sidenav.component';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { AngularFireAuthGuard } from '@angular/fire/compat/auth-guard';
+import {SystemComponent} from './system.component';
+
+import {AngularFireAuthGuard} from '@angular/fire/compat/auth-guard';
 import {
-  redirectLoggedInTo,
-  redirectUnauthorizedTo,
+    redirectLoggedInTo,
+    redirectUnauthorizedTo,
 } from '@angular/fire/auth-guard';
+import {SidenavComponent} from "./shared/components/sidenav/sidenav.component";
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['/login']);
 
 const routes: Routes = [
-  {
-    path: '',
-    component: SystemComponent,
-    canActivate: [AngularFireAuthGuard],
-    data: {
-      authGuardPipe: redirectUnauthorizedToLogin,
+    {
+        path: '', component: SystemComponent, canActivate: [AngularFireAuthGuard],
+        data: {
+            authGuardPipe: redirectUnauthorizedToLogin,
+        },
+        children: [/*{path: 'sidenav', component: SidenavComponent}*/],
     },
-    children: [{ path: 'sidenav', component: SidenavComponent }],
-  },
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
+    imports: [RouterModule.forChild(routes)],
+    exports: [RouterModule],
 })
-export class SystemRoutingModule {}
+export class SystemRoutingModule {
+}

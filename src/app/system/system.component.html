@@ -1,4 +1,14 @@
-<p>system works!</p>
-<app-sidenav></app-sidenav>
+<!--<p>system works!</p>-->
+<!--<app-sidenav></app-sidenav>-->
 
-<button (click)="logout()">выйти</button>
+<!---->
+
+		<app-header></app-header>
+		<app-sidenav></app-sidenav>
+		<article class="content dashboard-page">
+			<router-outlet></router-outlet>
+			<button (click)="logout()">выйти</button>
+		</article>
+		<app-footer></app-footer>
+
+
