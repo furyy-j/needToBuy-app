@@ -1,0 +1,43 @@
+<div class="text-center" *ngIf="!listItem">Loading...</div>
+<div *ngIf="listItem">
+	<div class="title-block">
+		<h3 class="title">
+			<a [routerLink]="['/system/shoplist']"><i class="fa fa-arrow-left"></i></a>
+			 Детальная информация
+			<span class="sparkline bar"></span>
+		</h3>
+	</div>
+	<section class="section">
+		<div class="row">
+			<div class="col-xs-6 col-xs-offset-3">
+				<div class="card" [ngClass]="{
+						'card-success': listItem.priority === 'success',
+						'card-warning': listItem.priority === 'warning',
+						'card-danger' : listItem.priority === 'danger'
+						}">
+					<div class="card-header">
+						<div class="header-block">
+							<p class="title">
+								<span *ngIf="listItem.priority === 'success'">Не обязательно</span>
+								<span *ngIf="listItem.priority === 'danger'">Очень важно</span>
+								<span *ngIf="listItem.priority === 'warning'">Средней важности</span>
+							</p>
+						</div>
+					</div>
+					<div class="card-block">
+						<ul>
+							<li>Название: <strong>{{listItem.title}}</strong></li>
+							<li >Статус:
+								<strong *ngIf="listItem.isCompleted">Выполнено</strong>
+								<strong *ngIf="!listItem.isCompleted">Не выполнено</strong></li>
+
+							<li>Количество: <strong>{{listItem.amount | number:'1.2'}} {{listItem.countType}}</strong></li>
+							<li>Комментарий: <strong>{{listItem.description}}</strong></li>
+						</ul>
+					</div>
+					<div class="card-footer">Создано: {{listItem.date | date: 'medium'}}</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>

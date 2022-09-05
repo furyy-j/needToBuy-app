@@ -1,13 +1,13 @@
 export const navbarData = [
     {
-        routeLink: 'dashboard',
-        icon: 'fal fa-user',
-        label: 'Dashboard'
+        routeLink: 'shoplist',
+        icon: 'fal fa-clipboard-list-check',
+        label: 'Shopping List'
     },
     {
-        routeLink: 'products',
-        icon: 'fal fa-box-open',
-        label: 'Products'
+        routeLink: 'add-products',
+        icon: 'fal fa-cart-plus',
+        label: 'Add Page'
     },
     {
         routeLink: 'statistics',
@@ -15,19 +15,14 @@ export const navbarData = [
         label: 'Statistics'
     },
     {
-        routeLink: 'coupens',
+        routeLink: 'coupens-page',
         icon: 'fal fa-tags',
         label: 'Coupens'
     },
     {
-        routeLink: 'pages',
-        icon: 'fal fa-file',
-        label: 'Pages'
-    },
-    {
-        routeLink: 'media',
-        icon: 'fal fa-camera',
-        label: 'Media'
+        routeLink: 'history',
+        icon: 'fal fa-history',
+        label: 'History'
     },
     {
         routeLink: 'settings',

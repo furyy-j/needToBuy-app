@@ -1,40 +1,49 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { User } from '../model/model.user';
-import { environment } from '../../../environments/environment';
-import { map, Observable } from 'rxjs';
-import { FbCreateResponse } from '../interfaces';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
 
-@Injectable({ providedIn: 'root' })
+import {map, Observable} from 'rxjs';
+import {getAuth} from "@angular/fire/auth";
+import {getDatabase, ref, set} from "firebase/database";
+
+import {User} from '../model/model.user';
+import {environment} from '../../../environments/environment';
+
+
+@Injectable({providedIn: 'root'})
 export class AuthService {
-  constructor(private http: HttpClient) {}
 
-  createUser(user: User): Observable<User> {
-    console.log('user: ', user);
-    return this.http.post(`${environment.fbDbUrl}/users.json`, user).pipe(
-      map((response: FbCreateResponse) => {
-        return {
-          ...user,
-          id: response.name,
-        };
-      })
-    );
-  }
+    constructor(private http: HttpClient) {
+    }
 
-  getUsers() {
-    return this.http.get<User>(`${environment.fbDbUrl}/users.json`).pipe(
-      map((response: { [key: string]: any }) => {
-        return Object.keys(response).map((key) => ({
-          ...response[key],
-          id: key,
-        }));
-      })
-    );
-    //     .pipe(map((user: User) => {
-    //
-    //     return {
-    //         user
-    //     }
-    // }))
-  }
+    createUser(user: User, id: string): void {
+        const db = getDatabase();
+        set(ref(db, 'users/' + id), {
+            username: user.username,
+            email: user.email
+        });
+
+    }
+
+    getUser(): Observable<User> {
+        const auth = getAuth();
+        const id = auth.currentUser.uid
+        return this.http.get<User>(`${environment.fbDbUrl}/users/${id}.json`).pipe(map((user: User) => {
+            return {
+                ...user,
+                id
+            }
+        }))
+    }
+
+    getAllUsers(): Observable<User[]> {
+        return this.http.get<User>(`${environment.fbDbUrl}/users.json`).pipe(
+            map((response: { [key: string]: any }) => {
+                return Object.keys(response).map((key) => ({
+                    ...response[key],
+                }));
+            }),
+        );
+    }
+
 }
+

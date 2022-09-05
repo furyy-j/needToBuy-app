@@ -1,0 +1,71 @@
+.completed{
+  text-decoration: line-through;
+  font-style: italic;
+}
+
+.down {
+  height: 10px;
+  width: 10px;
+  //filter: invert(100%);
+  transform: rotate(180deg);
+  transition: 0.2s;
+}
+
+.up {
+  height: 10px;
+  width: 10px;
+  //filter: invert(100%);
+  transform: rotate(360deg);
+  transition: 0.2s;
+}
+@media screen and (max-width: 485px) {
+
+  .task__module-add--button {
+    font-size: 11px;
+  }
+
+  .table {
+    &-title {
+      font-size: 11px;
+    }
+    &-data {
+      font-size: 11px;
+    }
+    &-btn {
+      font-size: 11px;
+    }
+  }
+
+  .action_id {
+    padding: 0.75rem 0.55rem;
+  }
+
+  .action_tl {
+    padding: 0.75rem 0.0rem;
+  }
+
+  .action_ac {
+    padding-right: 45px;
+  }
+
+  // .table th .action_th {
+  //     padding-right: 35px;
+  // }
+
+  .down {
+    height: 5px;
+    width: 5px;
+    filter: invert(100%);
+    transform: rotate(180deg);
+    transition: 0.2s;
+  }
+
+  .up {
+    height: 5px;
+    width: 5px;
+    filter: invert(100%);
+    transform: rotate(360deg);
+    transition: 0.2s;
+  }
+
+}

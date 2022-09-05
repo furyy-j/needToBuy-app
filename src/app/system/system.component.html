@@ -1,14 +1,10 @@
-<!--<p>system works!</p>-->
-<!--<app-sidenav></app-sidenav>-->
-
-<!---->
-
-		<app-header></app-header>
-		<app-sidenav></app-sidenav>
-		<article class="content dashboard-page">
-			<router-outlet></router-outlet>
-			<button (click)="logout()">выйти</button>
-		</article>
-		<app-footer></app-footer>
-
-
+<div *ngIf="user">
+	<app-sidenav (onToggleSideNav)="onToggleSideNav($event)">
+	</app-sidenav>
+	<app-body
+			[user]="user"
+			[collapsed]="isSideNavCollapsed"
+			[screenWidth]="screenWidth"
+	></app-body>
+</div>
+<div *ngIf="!user">loading...</div>

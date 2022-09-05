@@ -1,0 +1,124 @@
+<!--<div >-->
+<!--	<div class="form-control">-->
+<!--		<input type="text" placeholder="Найти продукт..."-->
+<!--			   [(ngModel)]="searchStr">-->
+<!--	</div>-->
+<!--	<table>-->
+<!--		<thead>-->
+<!--		<tr>-->
+<!--			<th>#id</th>-->
+<!--			<th>Продукт</th>-->
+<!--			<th>Приоритет</th>-->
+<!--			<th>Количество</th>-->
+<!--			<th>Ед.измерения</th>-->
+<!--			<th>Дата</th>-->
+<!--			<th>Действие</th>-->
+<!--		</tr>-->
+<!--		</thead>-->
+<!--		<tbody>-->
+<!--&lt;!&ndash;	|	searchPosts:searchStr&ndash;&gt;-->
+<!--		<tr *ngFor="let item of listItems; let idx = index">-->
+<!--			<td>{{idx + 1}}</td>-->
+<!--			<td>{{item.title}}</td>-->
+<!--			<td>{{item.priority}}</td>-->
+<!--			<td>{{item.amount}}</td>-->
+<!--			<td>{{item.countType}}q</td>-->
+<!--			<td>{{item.date | date:'medium':null:''}}</td>-->
+<!--			<td>-->
+<!--				<button-->
+<!--						class="btn2 btn-link2 open2"-->
+<!--						[routerLink]="['/admin','post', item.id, 'edit']"-->
+<!--				>-->
+<!--					Відкрити-->
+<!--				</button>-->
+<!--				<a (click)="remove(item.id)">Видалити</a>-->
+<!--			</td>-->
+<!--		</tr>-->
+<!--		</tbody>-->
+<!--	</table>-->
+<!--</div>-->
+<ng-template #loading>Loading...</ng-template>
+<div *ngIf="listItems; else loading" class="row">
+	<div class="col-md-12">
+		<div class="card">
+			<div class="card-header bordered">
+				<div class="header-block">
+					<h3 class="title">Список покупок</h3>
+				</div>
+				<div class="form-inline pull-right m-r-2">
+					<div class="form-group">
+						<input
+								type="text"
+								class="form-control"
+								[placeholder]="searchPlaceholder"
+								[(ngModel)]="searchValue">
+					</div>
+					<div class="btn-group" appDropdown>
+						<button type="button" class="btn btn-secondary dropdown-toggle ">
+							Параметр
+						</button>
+						<div class="dropdown-menu">
+							<a class="dropdown-item" (click)="changeCriteria('title')">Название</a>
+							<a class="dropdown-item" (click)="changeCriteria('date')">Дата</a>
+							<a class="dropdown-item" (click)="changeCriteria('amount')">Количество</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="card-block">
+				<table class="table table-striped">
+					<thead>
+					<tr style="text-align: center">
+						<th (click)="sort('isCompleted')" style="cursor: pointer;">#
+							<img src="assets/icons/arrow.png" alt="arrow"
+								 [ngClass]="{ 'down': !reverse, 'up': reverse }">
+						</th>
+						<th>Продукт</th>
+						<th>Приоритет</th>
+						<th>К-во</th>
+						<th (click)="sort('data')" style="cursor: pointer;">Дата создания
+							<img src="assets/icons/arrow.png" alt="arrow"
+							[ngClass]="{ 'down': !reverse, 'up': reverse }"></th>
+						<th class="text-lg-center">Действие</th>
+					</tr>
+					</thead>
+					<tbody>
+					<tr
+							*ngFor="let item of listItems |filter:searchValue:searchField;let idx = index"
+							(click)="updateStatus(listItems[idx],item['isCompleted'],idx)"
+							[ngClass]="{'completed': item['isCompleted']}"
+					>
+
+						<th scope="row">
+							<i *ngIf="!item['isCompleted'];else complete" class="far fa-square"></i>
+							<ng-template #complete><i class="far fa-check-square"></i></ng-template>
+						</th>
+						<th *ngIf="item.title.length>=10;else title">{{item.title | slice:0:10}}...</th>
+						<ng-template #title>
+							<th>{{item.title }}</th>
+						</ng-template>
+						<td>
+							<span [ngClass]="getPriorClass(item)">
+									<span *ngIf="item.priority == 'danger'">1</span>
+									<span *ngIf="item.priority == 'warning'">2</span>
+									<span *ngIf="item.priority == 'success'">3</span>
+							</span>
+						</td>
+						<td>{{item.amount | number:'1.2'}} {{item.countType}}</td>
+
+						<td>{{item.date | moment:'DD.MM.YYYY HH:mm:ss'}}</td>
+						<td class="text-lg-center">
+							<a style="margin-right: 5px ;border-radius: 5px"
+							   [routerLink]="['/system/shoplist', item.id]" class="btn btn-primary-outline"><i
+									class="fal fa-info-circle"></i></a>
+							<a style="margin-left: 5px ;border-radius: 5px" (click)="remove(item.id)"
+							   class="btn btn-danger-outline "><i class="fal fa-trash-alt"></i></a>
+						</td>
+					</tr>
+
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

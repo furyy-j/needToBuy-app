@@ -1,0 +1,54 @@
+$black-color: #000;
+$white-color: #fff;
+$linkedin-color: #0086fc;
+$back-color: #d7dde4;
+
+.footer {
+  background-color: $back-color;
+  height: 21px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  -webkit-transition: left 0.3s ease;
+  transition: left 0.3s ease;
+  z-index: 10;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+
+  &__title {
+    font-size: 12px;
+    font-weight: 100;
+    margin: 50% auto;
+
+  }
+  &-author{
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: $black-color;
+    transition: 0.5s;
+    &:hover {
+      color: $linkedin-color;
+      text-decoration: none;
+    }
+  }
+}
+
+@media (max-width: 991px) {
+  .footer {
+    left: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .footer {
+    left: 0;
+    height: 50px;
+  }
+}

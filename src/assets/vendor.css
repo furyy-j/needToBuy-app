@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/*!
+/*/
 Animate.css - http://daneden.me/animate
 Licensed under the MIT license - http://opensource.org/licenses/MIT
 
@@ -3087,7 +3087,7 @@ Copyright (c) 2015 Daniel Eden
   animation-name: slideOutUp;
 }
 
-/*!
+/*/
  *  Font Awesome 4.3.0 by @davegandy - http://fontawesome.io - @fontawesome
  *  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)
  */
@@ -5631,7 +5631,7 @@ Copyright (c) 2015 Daniel Eden
   }
 }
 
-/*! Quill Editor v0.20.1
+/*/ Quill Editor v0.20.1
  *  https://quilljs.com/
  *  Copyright (c) 2014, Jason Chen
  *  Copyright (c) 2013, salesforce.com
@@ -5864,7 +5864,7 @@ Copyright (c) 2015 Daniel Eden
   display: none;
 }
 
-/*! Quill Editor v0.20.1
+/*/ Quill Editor v0.20.1
  *  https://quilljs.com/
  *  Copyright (c) 2014, Jason Chen
  *  Copyright (c) 2013, salesforce.com
@@ -6206,15 +6206,15 @@ Copyright (c) 2015 Daniel Eden
   width: 24px;
 }
 
-.ql-snow.ql-toolbar .ql-picker {
-  box-sizing: border-box;
-  color: #444;
-  display: inline-block;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 14px;
-  font-weight: 500;
-  position: relative;
-}
+/*.ql-snow.ql-toolbar .ql-picker {*/
+/*  box-sizing: border-box;*/
+/*  color: #444;*/
+/*  display: inline-block;*/
+/*  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;*/
+/*  font-size: 14px;*/
+/*  font-weight: 500;*/
+/*  position: relative;*/
+/*}*/
 
 .ql-snow.ql-toolbar .ql-picker .ql-picker-label {
   box-sizing: border-box;
@@ -7635,7 +7635,7 @@ Copyright (c) 2015 Daniel Eden
   border-bottom: 6px solid #be2626;
 }
 
-/*!
+/*/
  * Bootstrap v4.0.0-alpha.2 (http://getbootstrap.com)
  * Copyright 2011-2015 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
@@ -7973,13 +7973,13 @@ html {
   -webkit-tap-highlight-color: transparent;
 }
 
-body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 1rem;
-  line-height: 1.5;
-  color: #373a3c;
-  background-color: #fff;
-}
+/*body {*/
+/*  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;*/
+/*  font-size: 1rem;*/
+/*  line-height: 1.5;*/
+/*  color: #373a3c;*/
+/*  background-color: #fff;*/
+/*}*/
 
 [tabindex="-1"]:focus {
   outline: 0 !important;
@@ -9871,6 +9871,8 @@ pre code {
   border: 1px solid #ccc;
   border-radius: 0.25rem;
 }
+
+
 
 .form-control::-ms-expand {
   background-color: transparent;

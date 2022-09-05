@@ -3,7 +3,3 @@ export interface Environment {
   apiKey: string;
   fbDbUrl: string;
 }
-
-export interface FbCreateResponse {
-  name?: string;
-}
