@@ -1,21 +1,23 @@
-import { NgModule } from '@angular/core';
-import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import {RulesComponent} from "./auth/rules-page/rules.component";
+import {NgModule} from '@angular/core';
+import {PreloadAllModules, RouterModule, Routes} from '@angular/router';
+import {NotFoundComponent} from "./shared/not-found/not-found.component";
+
 
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
-  {
-    path: 'system',
-    loadChildren: () =>
-      import('./system/system.module').then((x) => x.SystemModule),
-  },
-  { path: '**', component: RulesComponent },
+    {path: '', redirectTo: 'login', pathMatch: 'full'},
+    {
+        path: 'system',
+        loadChildren: () =>
+            import('./system/system.module').then((x) => x.SystemModule),
+    },
+    {path: '**', component: NotFoundComponent},
 ];
 
 @NgModule({
-  imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
-  ],
-  exports: [RouterModule],
+    imports: [
+        RouterModule.forRoot(routes, {preloadingStrategy: PreloadAllModules}),
+    ],
+    exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule {
+}

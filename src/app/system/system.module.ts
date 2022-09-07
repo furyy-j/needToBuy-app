@@ -18,6 +18,7 @@ import {DropdownDirective} from './shared/directives/dropdown.directive';
 import { FilterPipe } from './shared/pipes/filter.pipe';
 import { ListItemDetailComponent } from './shopping-list/list-item-detail/list-item-detail.component';
 import { MomentPipe } from './shared/pipes/moment.pipe';
+import { AlertComponent } from './shared/components/alert/alert.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { MomentPipe } from './shared/pipes/moment.pipe';
         DropdownDirective,
         FilterPipe,
         ListItemDetailComponent,
-        MomentPipe],
+        MomentPipe,
+        AlertComponent],
     imports: [
         CommonModule,
         SystemRoutingModule,

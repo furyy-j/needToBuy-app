@@ -6,7 +6,6 @@
 .down {
   height: 10px;
   width: 10px;
-  //filter: invert(100%);
   transform: rotate(180deg);
   transition: 0.2s;
 }
@@ -14,11 +13,30 @@
 .up {
   height: 10px;
   width: 10px;
-  //filter: invert(100%);
   transform: rotate(360deg);
   transition: 0.2s;
 }
+@media (max-width: 814px) {
+  .non-mobile{
+    display: none;
+  }
+}
 @media screen and (max-width: 485px) {
+  .down {
+    height: 5px;
+    width: 5px;
+    filter: invert(100%);
+    transform: rotate(180deg);
+    transition: 0.2s;
+  }
+
+  .up {
+    height: 5px;
+    width: 5px;
+    filter: invert(100%);
+    transform: rotate(360deg);
+    transition: 0.2s;
+  }
 
   .task__module-add--button {
     font-size: 11px;
@@ -52,20 +70,7 @@
   //     padding-right: 35px;
   // }
 
-  .down {
-    height: 5px;
-    width: 5px;
-    filter: invert(100%);
-    transform: rotate(180deg);
-    transition: 0.2s;
-  }
-
-  .up {
-    height: 5px;
-    width: 5px;
-    filter: invert(100%);
-    transform: rotate(360deg);
-    transition: 0.2s;
-  }
-
 }
+
+
+

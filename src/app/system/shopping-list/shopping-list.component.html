@@ -1,44 +1,17 @@
-<!--<div >-->
-<!--	<div class="form-control">-->
-<!--		<input type="text" placeholder="Найти продукт..."-->
-<!--			   [(ngModel)]="searchStr">-->
-<!--	</div>-->
-<!--	<table>-->
-<!--		<thead>-->
-<!--		<tr>-->
-<!--			<th>#id</th>-->
-<!--			<th>Продукт</th>-->
-<!--			<th>Приоритет</th>-->
-<!--			<th>Количество</th>-->
-<!--			<th>Ед.измерения</th>-->
-<!--			<th>Дата</th>-->
-<!--			<th>Действие</th>-->
-<!--		</tr>-->
-<!--		</thead>-->
-<!--		<tbody>-->
-<!--&lt;!&ndash;	|	searchPosts:searchStr&ndash;&gt;-->
-<!--		<tr *ngFor="let item of listItems; let idx = index">-->
-<!--			<td>{{idx + 1}}</td>-->
-<!--			<td>{{item.title}}</td>-->
-<!--			<td>{{item.priority}}</td>-->
-<!--			<td>{{item.amount}}</td>-->
-<!--			<td>{{item.countType}}q</td>-->
-<!--			<td>{{item.date | date:'medium':null:''}}</td>-->
-<!--			<td>-->
-<!--				<button-->
-<!--						class="btn2 btn-link2 open2"-->
-<!--						[routerLink]="['/admin','post', item.id, 'edit']"-->
-<!--				>-->
-<!--					Відкрити-->
-<!--				</button>-->
-<!--				<a (click)="remove(item.id)">Видалити</a>-->
-<!--			</td>-->
-<!--		</tr>-->
-<!--		</tbody>-->
-<!--	</table>-->
-<!--</div>-->
-<ng-template #loading>Loading...</ng-template>
-<div *ngIf="listItems; else loading" class="row">
+<div *ngIf="isLoading">loading...</div>
+<div *ngIf="isEmpty">
+<div  class="title-block">
+	<h2 class="title pull-left">
+		Ваш список покупок пуст<span class="sparkline bar"></span>
+	</h2>
+
+</div>
+	<a style=""
+	   [routerLink]="['/system/add-products']" ><h4>Добавить новые покупки</h4></a>
+</div>
+
+
+<div *ngIf="!isLoading && !isEmpty" class="row">
 	<div class="col-md-12">
 		<div class="card">
 			<div class="card-header bordered">
@@ -74,11 +47,11 @@
 								 [ngClass]="{ 'down': !reverse, 'up': reverse }">
 						</th>
 						<th>Продукт</th>
-						<th>Приоритет</th>
+						<th class="non-mobile">Приоритет</th>
 						<th>К-во</th>
-						<th (click)="sort('data')" style="cursor: pointer;">Дата создания
+						<th (click)="sort('data')" style="cursor: pointer;" class="non-mobile">Дата создания
 							<img src="assets/icons/arrow.png" alt="arrow"
-							[ngClass]="{ 'down': !reverse, 'up': reverse }"></th>
+								 [ngClass]="{ 'down': !reverse, 'up': reverse }"></th>
 						<th class="text-lg-center">Действие</th>
 					</tr>
 					</thead>
@@ -97,7 +70,7 @@
 						<ng-template #title>
 							<th>{{item.title }}</th>
 						</ng-template>
-						<td>
+						<td class="non-mobile">
 							<span [ngClass]="getPriorClass(item)">
 									<span *ngIf="item.priority == 'danger'">1</span>
 									<span *ngIf="item.priority == 'warning'">2</span>
@@ -106,12 +79,12 @@
 						</td>
 						<td>{{item.amount | number:'1.2'}} {{item.countType}}</td>
 
-						<td>{{item.date | moment:'DD.MM.YYYY HH:mm:ss'}}</td>
+						<td class="non-mobile">{{item.date | moment:'DD.MM.YYYY HH:mm:ss'}}</td>
 						<td class="text-lg-center">
 							<a style="margin-right: 5px ;border-radius: 5px"
 							   [routerLink]="['/system/shoplist', item.id]" class="btn btn-primary-outline"><i
 									class="fal fa-info-circle"></i></a>
-							<a style="margin-left: 5px ;border-radius: 5px" (click)="remove(item.id)"
+							<a style="margin-left: 5px ;border-radius: 5px" (click)="remove(item.id, $event)"
 							   class="btn btn-danger-outline "><i class="fal fa-trash-alt"></i></a>
 						</td>
 					</tr>

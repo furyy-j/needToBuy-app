@@ -4,7 +4,10 @@ import { NgModule } from '@angular/core';
 import { AuthComponent } from './auth.component';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
-import { RulesComponent } from './rules-page/rules.component';
+import {redirectLoggedInTo} from "@angular/fire/auth-guard";
+import {AngularFireAuthGuard} from "@angular/fire/compat/auth-guard";
+
+const redirectLoggedInToItems = () => redirectLoggedInTo(['/system']);
 
 const routes: Routes = [
   {
@@ -13,8 +16,7 @@ const routes: Routes = [
     children: [
       { path: 'login', component: LoginComponent },
       { path: 'registration', component: RegistrationComponent },
-      { path: 'rules', component: RulesComponent },
-    ],
+    ],canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectLoggedInToItems }
   },
 ];
 

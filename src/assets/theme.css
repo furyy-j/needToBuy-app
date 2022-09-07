@@ -3364,7 +3364,7 @@ pre {
 
 
 /*.sidebar {*/
-/*  background-color: #3a4651;*/
+/*  backgrounds-color: #3a4651;*/
 /*  width: 230px;*/
 /*  padding-bottom: 60px;*/
 /*  position: absolute;*/
@@ -3402,7 +3402,7 @@ pre {
 /*}*/
 
 /*.sidebar .sidebar-container::-webkit-scrollbar-track {*/
-/*  background-color: #2c353e;*/
+/*  backgrounds-color: #2c353e;*/
 /*}*/
 
 /*.sidebar .nav {*/
@@ -3411,7 +3411,7 @@ pre {
 
 /*.open .sidebar .nav li a:focus,*/
 /*.sidebar .nav li a:focus {*/
-/*  background-color: inherit;*/
+/*  backgrounds-color: inherit;*/
 /*}*/
 
 /*.sidebar .nav ul {*/
@@ -3437,7 +3437,7 @@ pre {
 /*.sidebar .nav li.open a:hover,*/
 /*.sidebar .nav li.open > a {*/
 /*  color: #fff;*/
-/*  background-color: #2d363f;*/
+/*  backgrounds-color: #2d363f;*/
 /*}*/
 
 /*.sidebar .nav > li > a {*/
@@ -3449,12 +3449,12 @@ pre {
 
 /*.sidebar .nav > li.active > a,*/
 /*.sidebar .nav > li.active > a:hover {*/
-/*  background-color: #52bcd3 !important;*/
+/*  backgrounds-color: #52bcd3 !important;*/
 /*  color: #fff !important;*/
 /*}*/
 
 /*.sidebar .nav > li.open > a {*/
-/*  background-color: #333e48;*/
+/*  backgrounds-color: #333e48;*/
 /*}*/
 
 /*.sidebar .nav > li.open > a i.arrow {*/
@@ -3483,7 +3483,7 @@ pre {
 /*  padding-top: 10px;*/
 /*  padding-bottom: 10px;*/
 /*  padding-left: 50px;*/
-/*  background-color: #333e48;*/
+/*  backgrounds-color: #333e48;*/
 /*}*/
 
 /*.sidebar .nav > li > ul > li.active a {*/
@@ -3512,7 +3512,7 @@ pre {
 
 /*@media (max-width: 767px) {*/
 /*  .sidebar-overlay {*/
-/*    background-color: rgba(0, 0, 0, 0.7);*/
+/*    backgrounds-color: rgba(0, 0, 0, 0.7);*/
 /*  }*/
 /*}*/
 

@@ -3,6 +3,8 @@ import {countType, priority} from "../shared/priority";
 import {NgForm} from "@angular/forms";
 import {ListItem} from "../shared/models/list-item.model";
 import {ListItemService} from "../shared/service/list-item.service";
+import {Message} from "../../shared/model/message.model";
+import {AlertService} from "../shared/service/alert.service";
 
 
 @Component({
@@ -14,11 +16,18 @@ export class AddProductPageComponent implements OnInit {
 
     priority = priority;
     countType = countType;
+    message!: Message;
 
-    constructor(private listItemService: ListItemService) {
+    constructor(private listItemService: ListItemService,
+                private alert: AlertService) {
     }
 
     ngOnInit() {
+        this.message = new Message('success', '')
+    }
+    private showMessage(text: string) {
+        this.message.text = text;
+        window.setTimeout(() => this.message.text = '', 3000)
     }
 
     onSubmit(form: NgForm) {
@@ -31,15 +40,10 @@ export class AddProductPageComponent implements OnInit {
             date: new Date(),
             isCompleted: false,
         }
-        console.log(listItem)
-
         this.listItemService.create(listItem).subscribe(() => {
-            form.reset()
-
-
+            this.alert.success('Покупка добавлена в список')
+            form.resetForm({ countType: 'шт',amount: '1' ,priority:'warning'})
         })
-        // console.log(form.value)
-        //const listItem = new ListItem(title, priority, amount, countType, description)
     }
 
 

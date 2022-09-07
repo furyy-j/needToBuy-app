@@ -12,6 +12,7 @@ export class ListItemService {
 
     uID = getAuth().currentUser.uid;
 
+
     constructor(private http: HttpClient) {
     }
 
@@ -26,9 +27,10 @@ export class ListItemService {
             }))
     }
 
-    getAllItems(): Observable<ListItem[]>{
+    getAllItems(): Observable<ListItem[]> | null{
         return this.http.get(`${environment.fbDbUrl}/users/${this.uID}/items.json`)
             .pipe(map((response: {[key:string]: any})=>{
+                if(response){
                 return Object
                     .keys(response)
                     .map(key=>({
@@ -37,7 +39,7 @@ export class ListItemService {
                         date: new Date(response[key].date)
                     }))
 
-            }))
+            }else{return null}}))
     }
 
     getById(id: string): Observable<ListItem>{
@@ -48,12 +50,12 @@ export class ListItemService {
                     id,
                     date: new Date(listItem.date)
                 }
-            }),tap((v)=>console.log('gbid',v)))
+            }))
 
     }
 
     changeStatus(item:ListItem):Observable<ListItem>{
-            return this.http.patch<ListItem>(`${environment.fbDbUrl}/users/${this.uID}/items/${item.id}.json`, item)
+        return this.http.patch<ListItem>(`${environment.fbDbUrl}/users/${this.uID}/items/${item.id}.json`, item)
     }
 
     remove(id: string): Observable<void>{

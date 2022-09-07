@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {AngularFireAuthGuard} from '@angular/fire/compat/auth-guard';
-import {redirectUnauthorizedTo} from '@angular/fire/auth-guard';
+import {redirectLoggedInTo, redirectUnauthorizedTo} from '@angular/fire/auth-guard';
 
 import {SystemComponent} from './system.component';
 import {CoupensComponent} from "./coupens-page/coupens.component";
@@ -14,6 +14,7 @@ import {ListItemDetailComponent} from "./shopping-list/list-item-detail/list-ite
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['/login']);
 
+
 const routes: Routes = [
     {
         path: '',
@@ -21,7 +22,7 @@ const routes: Routes = [
         canActivate: [AngularFireAuthGuard],
         data: {authGuardPipe: redirectUnauthorizedToLogin,},
         children: [
-            {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
+            {path: '', redirectTo: 'shoplist', pathMatch: 'full'},
             {path: 'shoplist', component: ShoppingListComponent},
             {path: 'add-products', component: AddProductPageComponent},
             {path: 'statistics', component: StatisticsPageComponent},
@@ -29,7 +30,6 @@ const routes: Routes = [
             {path: 'history', component: HistoryPageComponent},
             {path: 'settings', component: SettingComponent},
             {path: 'shoplist/:id', component: ListItemDetailComponent},
-
         ],
     },
 ];

@@ -1,12 +1,10 @@
 <div class="card">
 	<div class="card-header bordered">
 		<div class="header-block">
-			<h3 class="title">Добавить событие</h3>
+			<h3 class="title">Добавить покупку</h3>
 		</div>
 	</div>
 	<div class="card-block">
-		<!--		<div class="alert alert-{{message.type}}"-->
-		<!--			 *ngIf="message.text">{{message.text}}</div>-->
 		<form #f="ngForm" (ngSubmit)="onSubmit(f)">
 			<div
 					class="form-group"
@@ -40,8 +38,8 @@
 								name="priority"
 								type="radio"
 								[value]="p.name"
-								required
 								[ngModel]="'success'"
+								required
 						>
 						<span>{{p.name}}</span>
 					</label>
@@ -55,9 +53,8 @@
 					>
 						<label class="control-label" for="amount">Введите количество</label>
 						<input
-
 								type="number"
-								value="0"
+								value="1"
 								id="amount"
 								class="form-control form-control-width50"
 								name="amount"
@@ -66,7 +63,6 @@
 								#amount="ngModel"
 								required
 						>
-
 						<span
 								class="form-help-text"
 								*ngIf="amount.invalid && amount.touched"
