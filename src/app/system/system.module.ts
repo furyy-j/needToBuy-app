@@ -9,14 +9,13 @@ import {FooterComponent} from "./shared/components/footer/footer.component";
 import {SidenavComponent} from "./shared/components/sidenav/sidenav.component";
 import {BodyComponent} from './shared/components/body/body.component';
 import {CoupensComponent} from './coupens-page/coupens.component';
-import {ShoppingListComponent} from './shopping-list/shopping-list.component';
+import {PurchasesComponent} from './purchases-page/purchases.component';
 import {AddProductPageComponent} from './add-product-page/add-product-page.component';
-import {HistoryPageComponent} from './history-page/history-page.component';
 import {StatisticsPageComponent} from './statistics-page/statistics-page.component';
 import {SettingComponent} from './setting-page/setting.component';
 import {DropdownDirective} from './shared/directives/dropdown.directive';
 import { FilterPipe } from './shared/pipes/filter.pipe';
-import { ListItemDetailComponent } from './shopping-list/list-item-detail/list-item-detail.component';
+import { ListItemDetailComponent } from './purchases-page/list-item-detail/list-item-detail.component';
 import { MomentPipe } from './shared/pipes/moment.pipe';
 import { AlertComponent } from './shared/components/alert/alert.component';
 
@@ -29,9 +28,8 @@ import { AlertComponent } from './shared/components/alert/alert.component';
         FooterComponent,
         BodyComponent,
         CoupensComponent,
-        ShoppingListComponent,
+        PurchasesComponent,
         AddProductPageComponent,
-        HistoryPageComponent,
         StatisticsPageComponent,
         SettingComponent,
         DropdownDirective,

@@ -3237,7 +3237,7 @@ Copyright (c) 2015 Daniel Eden
 
 .fa-flip-horizontal {
   -webkit-transform: scale(-1, 1);
-  -ms-transform: scale(-1, 1);
+  -ms-transformz: scale(-1, 1);
   transform: scale(-1, 1);
 }
 

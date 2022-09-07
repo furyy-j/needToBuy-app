@@ -5,12 +5,12 @@ import {ListItemService} from "../shared/service/list-item.service";
 import {AlertService} from "../shared/service/alert.service";
 
 @Component({
-    selector: 'app-shopping-list',
-    templateUrl: './shopping-list.component.html',
-    styleUrls: ['./shopping-list.component.scss'],
+    selector: 'app-purchases-page',
+    templateUrl: './purchases.component.html',
+    styleUrls: ['./purchases.component.scss'],
 
 })
-export class ShoppingListComponent implements OnInit, OnDestroy {
+export class PurchasesComponent implements OnInit, OnDestroy {
 
     subscr$: Subscription;
     subscr2$: Subscription;

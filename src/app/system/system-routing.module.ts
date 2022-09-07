@@ -5,12 +5,11 @@ import {redirectLoggedInTo, redirectUnauthorizedTo} from '@angular/fire/auth-gua
 
 import {SystemComponent} from './system.component';
 import {CoupensComponent} from "./coupens-page/coupens.component";
-import {ShoppingListComponent} from "./shopping-list/shopping-list.component";
+import {PurchasesComponent} from "./purchases-page/purchases.component";
 import {AddProductPageComponent} from "./add-product-page/add-product-page.component";
 import {StatisticsPageComponent} from "./statistics-page/statistics-page.component";
-import {HistoryPageComponent} from "./history-page/history-page.component";
 import {SettingComponent} from "./setting-page/setting.component";
-import {ListItemDetailComponent} from "./shopping-list/list-item-detail/list-item-detail.component";
+import {ListItemDetailComponent} from "./purchases-page/list-item-detail/list-item-detail.component";
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['/login']);
 
@@ -22,14 +21,13 @@ const routes: Routes = [
         canActivate: [AngularFireAuthGuard],
         data: {authGuardPipe: redirectUnauthorizedToLogin,},
         children: [
-            {path: '', redirectTo: 'shoplist', pathMatch: 'full'},
-            {path: 'shoplist', component: ShoppingListComponent},
-            {path: 'add-products', component: AddProductPageComponent},
+            {path: '', redirectTo: 'purchases-page', pathMatch: 'full'},
+            {path: 'purchases-page', component: PurchasesComponent},
+            {path: 'create', component: AddProductPageComponent},
             {path: 'statistics', component: StatisticsPageComponent},
             {path: 'coupens-page', component: CoupensComponent},
-            {path: 'history', component: HistoryPageComponent},
             {path: 'settings', component: SettingComponent},
-            {path: 'shoplist/:id', component: ListItemDetailComponent},
+            {path: 'purchases-page/:id', component: ListItemDetailComponent},
         ],
     },
 ];

@@ -1,13 +1,13 @@
 export const navbarData = [
     {
-        routeLink: 'shoplist',
+        routeLink: 'purchases-page',
         icon: 'fal fa-clipboard-list-check',
-        label: 'Shopping List'
+        label: 'Purchases'
     },
     {
-        routeLink: 'add-products',
+        routeLink: 'create',
         icon: 'fal fa-cart-plus',
-        label: 'Add Page'
+        label: 'Create'
     },
     {
         routeLink: 'statistics',
@@ -18,11 +18,6 @@ export const navbarData = [
         routeLink: 'coupens-page',
         icon: 'fal fa-tags',
         label: 'Coupens'
-    },
-    {
-        routeLink: 'history',
-        icon: 'fal fa-history',
-        label: 'History'
     },
     {
         routeLink: 'settings',
