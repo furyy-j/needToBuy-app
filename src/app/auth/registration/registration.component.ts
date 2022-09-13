@@ -3,7 +3,7 @@ import {AsyncValidatorFn, FormControl, FormGroup, Validators} from '@angular/for
 import {AngularFireAuth} from '@angular/fire/compat/auth';
 import {Title} from '@angular/platform-browser';
 import {Router} from '@angular/router';
-import {Subscription } from "rxjs";
+import {Subscription} from "rxjs";
 
 import {User} from '../../shared/model/model.user';
 import {AuthService} from '../../shared/services/auth.service';
@@ -49,7 +49,6 @@ export class RegistrationComponent implements OnInit, OnDestroy {
         const {email, password, name} = this.form.value;
         const user = new User(email, name);
 
-
         this.auth.createUserWithEmailAndPassword(email, password).then((userCredential) => {
 
             console.log('reg userID', userCredential.user.uid)
@@ -77,7 +76,9 @@ export class RegistrationComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy() {
-        if(this.sub$){this.sub$.unsubscribe()}
+        if (this.sub$) {
+            this.sub$.unsubscribe()
+        }
     }
 
 }

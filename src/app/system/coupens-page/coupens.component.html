@@ -1,9 +1,65 @@
+<div *ngIf="isLoading">loading...</div>
+<div *ngIf="!isLoading">
 <div class="title-block">
 	<h2 class="title pull-left">
 		Страница скидочных карт <span class="sparkline bar"></span>
 	</h2>
+	<div class="pull-right">
+		<button class="btn-sm btn btn-primary-outline">
+			<i class="fa fa-refresh" (click)="onRefresh()"></i>
+		</button>
+	</div>
+</div>
+<div class="row">
+	<div class="col">
+		<button type="button" class="btn btn btn-oval btn-info"
+				(click)="openModal()"
+		>Добавить карту
+		</button>
+	</div>
+	<div class="col">
+		<h2 *ngIf="!isEmpty">Все карты</h2>
+		<h2 *ngIf="isEmpty">У вас пока нет скидочных карт</h2>
+	</div>
 
 </div>
-<section class="section">
+<div *ngIf="isModalVisible">
+	<app-modal
+			(onModalCancel)="onModalCancel()"
+	></app-modal>
+</div>
 
-</section>
+<div class="container-fluid">
+	<div class="block__row">
+
+		<div class="card block__element" *ngFor="let card of cards">
+
+			<div class="block__element__title">
+				<button
+						type="button"
+						style="padding: 3px 5px;"
+						class="close"
+						(click)="remove(card.id)">
+					<span>×</span>
+				</button>
+
+
+
+				<div class="card-title text-center">
+					<div *ngIf="card.title.length>=20;else title" class="card__title">{{card.title | slice:0:20}}...
+					</div>
+
+					<ng-template #title>
+						<div class="card__title">{{card.title}}</div>
+					</ng-template>
+				</div>
+			</div>
+
+
+			<div class="card-body text-center">
+				<ngx-barcode class="" [bc-value]="card.number.slice(0,13)" [bc-display-value]="true"></ngx-barcode>
+			</div>
+		</div>
+	</div>
+</div>
+</div>

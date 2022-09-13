@@ -12,7 +12,6 @@ export class ListItemService {
 
     uID = getAuth().currentUser.uid;
 
-
     constructor(private http: HttpClient) {
     }
 

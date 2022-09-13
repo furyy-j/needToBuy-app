@@ -1,27 +1,27 @@
 export const navbarData = [
     {
         routeLink: 'purchases-page',
-        icon: 'fal fa-clipboard-list-check',
+        icon: 'far fa-clipboard-list-check',
         label: 'Purchases'
     },
     {
         routeLink: 'create',
-        icon: 'fal fa-cart-plus',
+        icon: 'far fa-cart-plus',
         label: 'Create'
     },
     {
         routeLink: 'statistics',
-        icon: 'fal fa-chart-bar',
+        icon: 'far fa-chart-bar',
         label: 'Statistics'
     },
     {
         routeLink: 'coupens-page',
-        icon: 'fal fa-tags',
+        icon: 'far fa-tags',
         label: 'Coupens'
     },
     {
-        routeLink: 'settings',
-        icon: 'fal fa-cog',
-        label: 'Settings'
+        routeLink: 'about',
+        icon: 'far fa-user-friends',
+        label: 'About Us'
     }
 ];

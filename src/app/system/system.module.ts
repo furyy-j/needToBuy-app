@@ -18,6 +18,9 @@ import { FilterPipe } from './shared/pipes/filter.pipe';
 import { ListItemDetailComponent } from './purchases-page/list-item-detail/list-item-detail.component';
 import { MomentPipe } from './shared/pipes/moment.pipe';
 import { AlertComponent } from './shared/components/alert/alert.component';
+import { AboutComponent } from './about-page/about.component';
+import { ModalComponent } from './coupens-page/modal/modal.component';
+import {NgxBarcodeModule} from "ngx-barcode";
 
 
 @NgModule({
@@ -36,11 +39,14 @@ import { AlertComponent } from './shared/components/alert/alert.component';
         FilterPipe,
         ListItemDetailComponent,
         MomentPipe,
-        AlertComponent],
+        AlertComponent,
+        AboutComponent,
+        ModalComponent],
     imports: [
         CommonModule,
         SystemRoutingModule,
         FormsModule,
+        NgxBarcodeModule,
     ],
 })
 export class SystemModule {

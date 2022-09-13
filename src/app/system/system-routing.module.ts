@@ -10,6 +10,7 @@ import {AddProductPageComponent} from "./add-product-page/add-product-page.compo
 import {StatisticsPageComponent} from "./statistics-page/statistics-page.component";
 import {SettingComponent} from "./setting-page/setting.component";
 import {ListItemDetailComponent} from "./purchases-page/list-item-detail/list-item-detail.component";
+import {AboutComponent} from "./about-page/about.component";
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['/login']);
 
@@ -26,7 +27,7 @@ const routes: Routes = [
             {path: 'create', component: AddProductPageComponent},
             {path: 'statistics', component: StatisticsPageComponent},
             {path: 'coupens-page', component: CoupensComponent},
-            {path: 'settings', component: SettingComponent},
+            {path: 'about', component: AboutComponent},
             {path: 'purchases-page/:id', component: ListItemDetailComponent},
         ],
     },
