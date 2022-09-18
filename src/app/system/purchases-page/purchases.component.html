@@ -1,13 +1,16 @@
-<div *ngIf="isLoading">loading...</div>
-<div *ngIf="isEmpty">
-<div  class="title-block">
-	<h2 class="title pull-left">
-		Ваш список покупок пуст<span class="sparkline bar"></span>
-	</h2>
-
+<div *ngIf="isLoading" class="text-center">
+	<app-loader></app-loader>
 </div>
+
+<div *ngIf="!isLoading && isEmpty">
+	<div class="title-block">
+		<h2 class="title pull-left">
+			Ваш список покупок пуст<span class="sparkline bar"></span>
+		</h2>
+
+	</div>
 	<a style=""
-	   [routerLink]="['/system/add-products']" ><h4>Добавить новые покупки</h4></a>
+	   [routerLink]="['/system/create']"><h4>Добавить новые покупки</h4></a>
 </div>
 
 
@@ -18,7 +21,7 @@
 				<div class="header-block">
 					<h3 class="title">Список покупок</h3>
 				</div>
-				<div class="form-inline pull-right m-r-2">
+				<div class="form-inline pull-right m-r-2 mobile">
 					<div class="form-group">
 						<input
 								type="text"
@@ -42,17 +45,17 @@
 				<table class="table table-striped">
 					<thead>
 					<tr style="text-align: center">
-						<th (click)="sort('isCompleted')" style="cursor: pointer;">#
+						<th (click)="sort('isCompleted')" style="cursor: pointer;" class="mobile">#
 							<img src="assets/icons/arrow.png" alt="arrow"
 								 [ngClass]="{ 'down': !reverse, 'up': reverse }">
 						</th>
 						<th>Продукт</th>
 						<th class="non-mobile">Приоритет</th>
-						<th>К-во</th>
-						<th (click)="sort('data')" style="cursor: pointer;" class="non-mobile">Дата создания
+						<th class="mobile">К-во</th>
+						<th (click)="sort('data')" style="cursor: pointer;" class="non-mobile">Дата
 							<img src="assets/icons/arrow.png" alt="arrow"
 								 [ngClass]="{ 'down': !reverse, 'up': reverse }"></th>
-						<th class="text-lg-center">Действие</th>
+						<th class="text-lg-center mobile">Действие</th>
 					</tr>
 					</thead>
 					<tbody>
@@ -62,7 +65,7 @@
 							[ngClass]="{'completed': item['isCompleted']}"
 					>
 
-						<th scope="row">
+						<th scope="row" class="mobile">
 							<i *ngIf="!item['isCompleted'];else complete" class="far fa-square"></i>
 							<ng-template #complete><i class="far fa-check-square"></i></ng-template>
 						</th>
@@ -77,12 +80,12 @@
 									<span *ngIf="item.priority == 'success'">3</span>
 							</span>
 						</td>
-						<td>{{item.amount | number:'1.2'}} {{item.countType}}</td>
+						<td class="mobile">{{item.amount | number:'1.2'}} {{item.countType}}</td>
 
 						<td class="non-mobile">{{item.date | moment:'DD.MM.YYYY HH:mm:ss'}}</td>
 						<td class="text-lg-center">
 							<a style="margin-right: 5px ;border-radius: 5px"
-							   [routerLink]="['/system/purchases-page', item.id]" class="btn btn-primary-outline"><i
+							   [routerLink]="['/system/purchases', item.id]" class="btn btn-primary-outline"><i
 									class="fal fa-info-circle"></i></a>
 							<a style="margin-left: 5px ;border-radius: 5px" (click)="remove(item.id, $event)"
 							   class="btn btn-danger-outline "><i class="fal fa-trash-alt"></i></a>

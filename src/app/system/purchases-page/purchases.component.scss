@@ -16,11 +16,7 @@
   transform: rotate(360deg);
   transition: 0.2s;
 }
-@media (max-width: 814px) {
-  .non-mobile{
-    display: none;
-  }
-}
+
 @media screen and (max-width: 485px) {
   .down {
     height: 5px;
@@ -66,9 +62,23 @@
     padding-right: 45px;
   }
 
-  // .table th .action_th {
-  //     padding-right: 35px;
-  // }
+
+
+}
+@media (max-width: 859px){
+  .non-mobile{
+    display: none;
+  }
+
+
+}
+@media screen and (max-width: 641px){
+  .mobile{
+    display: none;
+  }
+  .col-md-12{
+    margin: 0 -45px 0 -45px;
+  }
 
 }
 

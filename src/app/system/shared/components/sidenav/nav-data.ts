@@ -1,6 +1,6 @@
 export const navbarData = [
     {
-        routeLink: 'purchases-page',
+        routeLink: 'purchases',
         icon: 'far fa-clipboard-list-check',
         label: 'Purchases'
     },
@@ -15,13 +15,13 @@ export const navbarData = [
         label: 'Statistics'
     },
     {
-        routeLink: 'coupens-page',
+        routeLink: 'cards',
         icon: 'far fa-tags',
         label: 'Coupens'
     },
     {
         routeLink: 'about',
         icon: 'far fa-user-friends',
-        label: 'About Us'
+        label: 'AboutUs'
     }
 ];

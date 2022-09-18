@@ -1,6 +1,7 @@
 <header class="header">
 	<div class="header-block header-block-search">
-		{{date | date:'dd.MM.yyyy  hh:mm'}}
+
+		{{date | date:'dd.MM.yyyy  HH:mm'}}
 	</div>
 	<div class="header-block header-block-nav">
 		<ul class="nav-profile">
@@ -13,7 +14,7 @@
 				</a>
 				<div class="dropdown-menu profile-dropdown-menu">
 					<a class="dropdown-item" [routerLink]="['/system','create']" >
-						<i class="far fa-plus-square icon"></i> Добавить
+						<i class="far fa-plus-square icon"></i> Создать
 					</a>
 					<div class="dropdown-divider"></div>
 					<a class="dropdown-item" (click)="onLogout()">

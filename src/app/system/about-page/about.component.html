@@ -12,11 +12,15 @@
 <section class="page__subscribe subscribe">
 	<div class="subscribe__container _container">
 		<div class="subscribe__body">
-			<h4 class="subscribe__title">Subscribe For Latest <br> Newsletter</h4>
-			<form action="#" class="subscribe__form">
-				<input type="email" required class="subscribe__input" placeholder="Your Email">
+
+			<h4 class="subscribe__title">Подпишись для <br> Новостей</h4>
+			<form [formGroup]="form" (ngSubmit)="onSubmit()" class="subscribe__form"
+				  [ngClass]="{'has-error': form.get('email')?.invalid && form.get('email')?.touched}">
+				<input type="email" required class="subscribe__input" id="email" formControlName="email"
+					   placeholder="Your email">
 				<button type="submit" class="subscribe__button">Subscribe</button>
 			</form>
+
 		</div>
 	</div>
 </section>

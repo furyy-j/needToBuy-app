@@ -3,7 +3,8 @@
   position: relative;
   padding-bottom: 20px;
 }
-.subscribe:before{
+
+.subscribe:before {
   content: "";
   position: absolute;
   bottom: 0;
@@ -12,9 +13,11 @@
   height: 77px;
   background: #364248;
 }
+
 .subscribe__container {
   padding: 350px 50px 0;
 }
+
 .subscribe__body {
   position: relative;
   z-index: 2;
@@ -24,11 +27,13 @@
   border-radius: 2px;
 
 }
+
 @media (min-width: 1070px) {
-  .subscribe__body{
+  .subscribe__body {
     margin: 0 30px;
   }
 }
+
 .subscribe__title {
   color: #fff;
   font-size: 24px;
@@ -36,8 +41,9 @@
   line-height: 133%;
   letter-spacing: 0.1px;
 }
-@media (max-width: 810px){
-  .subscribe__title{
+
+@media (max-width: 810px) {
+  .subscribe__title {
     margin: 0 0 20px 0;
   }
   .subscribe__body {
@@ -45,6 +51,7 @@
     padding: 20px 15px;
   }
 }
+
 @media (min-width: 810px) {
   .subscribe__title {
     max-width: 266px;
@@ -54,11 +61,13 @@
     justify-content: space-between;
   }
 }
+
 .subscribe__form {
   flex: 0 1 50%;
   display: flex;
   align-items: center;
 }
+
 .subscribe__input {
   width: 100%;
   background-color: #f9f9f9;
@@ -71,9 +80,11 @@
   border-radius: 5px 0 0 5px;
   border-right: 0;
 }
-.subscribe__input:focus{
+
+.subscribe__input:focus {
   color: #000;
 }
+
 .subscribe__button {
   background-color: #52bcd3;
   border: 1px solid #e6e6e6;
@@ -88,11 +99,30 @@
   transition: all 0.3s ease 0s;
   padding: 0 22px;
 }
-.subscribe__button:hover{
+
+.subscribe__button:hover {
   background-color: #ca6137;
 }
+
 @media (max-width: 810px) {
-  .subscribe__button{
+  .subscribe__button {
     padding: 0 15px;
+  }
+  .subscribe__container {
+    margin: -350px 0 0 0;
+  }
+}
+
+@media (max-width: 508px) {
+  .subscribe__button {
+    padding: 0 15px;
+  }
+  .subscribe__container {
+    display: none;
+  }
+  ._container{
+    display: none;}
+  .page__subscribe{
+    display: none;
   }
 }

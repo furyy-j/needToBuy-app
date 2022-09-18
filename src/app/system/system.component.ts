@@ -1,8 +1,9 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, HostBinding, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from "rxjs";
 
 import {User} from "../shared/model/model.user";
 import {AuthService} from "../shared/services/auth.service";
+import {fadeStateTrigger} from "../shared/animations/fide.animation";
 
 
 
@@ -15,8 +16,11 @@ interface SideNavToggle {
     selector: 'app-system',
     templateUrl: './system.component.html',
     styleUrls: ['./system.component.scss'],
+    animations: [fadeStateTrigger]
 })
 export class SystemComponent implements OnInit,OnDestroy {
+
+    @HostBinding('@fade') a = true;
 
     user!: User;
 
@@ -30,7 +34,6 @@ export class SystemComponent implements OnInit,OnDestroy {
 
     ngOnInit(): void {
         this.userSub$ = this.authService.getUser().subscribe((user: User) => {
-            console.log(user)
             this.user = user
         })
     }

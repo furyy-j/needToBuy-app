@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CoupensComponent } from './coupens.component';
+import { OpenCardComponent } from './open-card.component';
 
-describe('CoupensComponent', () => {
-  let component: CoupensComponent;
-  let fixture: ComponentFixture<CoupensComponent>;
+describe('OpenCardComponent', () => {
+  let component: OpenCardComponent;
+  let fixture: ComponentFixture<OpenCardComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CoupensComponent ]
+      declarations: [ OpenCardComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(CoupensComponent);
+    fixture = TestBed.createComponent(OpenCardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

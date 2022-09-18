@@ -4,60 +4,36 @@ import {ListItem} from "../models/list-item.model";
 import {map, Observable, tap} from "rxjs";
 import {environment} from "../../../../environments/environment";
 import {getAuth} from "@angular/fire/auth";
+import {Card} from "../models/discount-card.model";
+import {BaseApi} from "../core/base-api";
 
 @Injectable({
     providedIn: 'root'
 })
-export class ListItemService {
+export class ListItemService extends BaseApi{
 
-    uID = getAuth().currentUser.uid;
+    item: string = 'items'
 
-    constructor(private http: HttpClient) {
+    constructor(public override http: HttpClient) {
+        super(http)
     }
 
-    create(listItem: ListItem): Observable<ListItem> {
-        return this.http.post(`${environment.fbDbUrl}/users/${this.uID}/items.json`, listItem)
-            .pipe(map((response: { name?: string }) => {
-                return {
-                    ...listItem,
-                    id: response.name,
-                    date: new Date(listItem.date)
-                }
-            }))
+    createCard(listItem: ListItem):Observable<ListItem>{
+        return this.create(listItem, this.item)
     }
-
     getAllItems(): Observable<ListItem[]> | null{
-        return this.http.get(`${environment.fbDbUrl}/users/${this.uID}/items.json`)
-            .pipe(map((response: {[key:string]: any})=>{
-                if(response){
-                return Object
-                    .keys(response)
-                    .map(key=>({
-                        ...response[key],
-                        id: key,
-                        date: new Date(response[key].date)
-                    }))
-
-            }else{return null}}))
+        return this.getAll(this.item)
     }
 
-    getById(id: string): Observable<ListItem>{
-        return this.http.get<ListItem>(`${environment.fbDbUrl}/users/${this.uID}/items/${id}.json`)
-            .pipe(map((listItem: ListItem)=> {
-                return {
-                    ...listItem,
-                    id,
-                    date: new Date(listItem.date)
-                }
-            }))
-
+    getByItemId(id: string): Observable<ListItem>{
+        return this.getById(id,this.item)
     }
 
     changeStatus(item:ListItem):Observable<ListItem>{
-        return this.http.patch<ListItem>(`${environment.fbDbUrl}/users/${this.uID}/items/${item.id}.json`, item)
+        return this.update(item)
     }
 
-    remove(id: string): Observable<void>{
-        return this.http.delete<void>(`${environment.fbDbUrl}/users/${this.uID}/items/${id}.json`)
+    removeItem(id: string): Observable<void>{
+        return this.remove(id, this.item)
     }
 }

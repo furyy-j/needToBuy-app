@@ -1,16 +1,16 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {AngularFireAuthGuard} from '@angular/fire/compat/auth-guard';
-import {redirectLoggedInTo, redirectUnauthorizedTo} from '@angular/fire/auth-guard';
+import {redirectUnauthorizedTo} from '@angular/fire/auth-guard';
 
 import {SystemComponent} from './system.component';
-import {CoupensComponent} from "./coupens-page/coupens.component";
+import {CardsComponent} from "./cards-page/cards.component";
 import {PurchasesComponent} from "./purchases-page/purchases.component";
-import {AddProductPageComponent} from "./add-product-page/add-product-page.component";
+import {CreatePageComponent} from "./create-page/create-page.component";
 import {StatisticsPageComponent} from "./statistics-page/statistics-page.component";
-import {SettingComponent} from "./setting-page/setting.component";
 import {ListItemDetailComponent} from "./purchases-page/list-item-detail/list-item-detail.component";
 import {AboutComponent} from "./about-page/about.component";
+import {OpenCardComponent} from "./cards-page/open-card/open-card.component";
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['/login']);
 
@@ -22,13 +22,14 @@ const routes: Routes = [
         canActivate: [AngularFireAuthGuard],
         data: {authGuardPipe: redirectUnauthorizedToLogin,},
         children: [
-            {path: '', redirectTo: 'purchases-page', pathMatch: 'full'},
-            {path: 'purchases-page', component: PurchasesComponent},
-            {path: 'create', component: AddProductPageComponent},
+            {path: '', redirectTo: 'purchases', pathMatch: 'full'},
+            {path: 'purchases', component: PurchasesComponent},
+            {path: 'create', component: CreatePageComponent},
             {path: 'statistics', component: StatisticsPageComponent},
-            {path: 'coupens-page', component: CoupensComponent},
+            {path: 'cards', component: CardsComponent},
             {path: 'about', component: AboutComponent},
-            {path: 'purchases-page/:id', component: ListItemDetailComponent},
+            {path: 'purchases/:id', component: ListItemDetailComponent},
+            {path: 'cards/:id', component: OpenCardComponent},
         ],
     },
 ];

@@ -16,7 +16,7 @@ export class ModalComponent implements OnInit {
 
     constructor(private alert: AlertService,
                 private cardService: CardService,
-                private router: Router) {
+    ) {
     }
 
     ngOnInit(): void {
@@ -27,9 +27,15 @@ export class ModalComponent implements OnInit {
     close() {
         this.onModalCancel.emit();
     }
-    onSubmit(form: NgForm){
+
+    onSubmit(form: NgForm) {
         let {name, barNum} = form.value;
-        const card = new Card(name, barNum.toString());
+        if (barNum.toString().length >=12) {
+            barNum = barNum.toString().slice(0, 12)
+        } else {
+            barNum = barNum.toString()
+        }
+        const card = new Card(name, barNum);
         this.cardService.createCard(card).subscribe(() => {
             this.alert.success('Карта добавлена')
             form.resetForm({})

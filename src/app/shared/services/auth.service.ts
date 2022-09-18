@@ -15,15 +15,11 @@ export class AuthService {
     constructor(private http: HttpClient) {
     }
 
-    isLogin():boolean{
-        return !!getAuth().currentUser;
-    }
-
     createUser(user: User, id: string): void {
         const db = getDatabase();
         set(ref(db, 'users/' + id), {
             username: user.username,
-            email: user.email
+            email: user.email,
         });
     }
 

@@ -20,9 +20,9 @@ export class ListItemDetailComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.route.params
+        this.sub1 = this.route.params
             .pipe(switchMap((params: Params) => {
-                    return this.listService.getById(params['id'])
+                    return this.listService.getByItemId(params['id'])
                 })
             ).subscribe(
             (item: ListItem) => {
@@ -31,5 +31,7 @@ export class ListItemDetailComponent implements OnInit {
 
             })
     }
-
+    ngOnDestroy(): void {
+        if(this.sub1)this.sub1.unsubscribe()
+    }
 }

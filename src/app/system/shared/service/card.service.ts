@@ -1,45 +1,33 @@
-import { Injectable } from '@angular/core';
-import {ListItem} from "../models/list-item.model";
-import {map, Observable} from "rxjs";
-import {environment} from "../../../../environments/environment";
+import {Injectable} from '@angular/core';
+import {Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
-import {getAuth} from "@angular/fire/auth";
 import {Card} from "../models/discount-card.model";
+import {BaseApi} from "../core/base-api";
+import {ListItem} from "../models/list-item.model";
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
-export class CardService {
+export class CardService extends BaseApi {
 
-  uID = getAuth().currentUser.uid;
+    private item: string = 'cards'
 
-  constructor(private http: HttpClient) { }
-
-  createCard(card: Card): Observable<Card> {
-    return this.http.post(`${environment.fbDbUrl}/users/${this.uID}/cards.json`, card)
-        .pipe(map((response: { name?: string }) => {
-          return {
-            ...card,
-              id: response.name,
-          }
-        }))
-  }
-
-    getAllCards(): Observable<Card[]> | null{
-        return this.http.get(`${environment.fbDbUrl}/users/${this.uID}/cards.json`)
-            .pipe(map((response: {[key:string]: any})=>{
-                if(response){
-                    return Object
-                        .keys(response)
-                        .map(key=>({
-                            ...response[key],
-                            id: key,
-                        }))
-
-                }else{return null}}))
+    constructor(public override http: HttpClient) {
+        super(http)
     }
 
-    remove(id: string): Observable<void>{
-        return this.http.delete<void>(`${environment.fbDbUrl}/users/${this.uID}/cards/${id}.json`)
+    createCard(card: Card): Observable<Card> {
+        return this.create(card, this.item)
+    }
+
+    getAllCards(): Observable<Card[]> | null {
+        return this.getAll(this.item)
+    }
+    getByCardId(id: string): Observable<Card>{
+        return this.getById(id,this.item)
+    }
+
+    removeCard(id: string): Observable<void> {
+        return this.remove(id, this.item)
     }
 }

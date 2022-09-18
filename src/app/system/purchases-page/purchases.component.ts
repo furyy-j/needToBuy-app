@@ -1,8 +1,9 @@
-import {ChangeDetectionStrategy, Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from "rxjs";
 import {ListItem} from "../shared/models/list-item.model";
 import {ListItemService} from "../shared/service/list-item.service";
 import {AlertService} from "../shared/service/alert.service";
+import {Title} from "@angular/platform-browser";
 
 @Component({
     selector: 'app-purchases-page',
@@ -12,12 +13,12 @@ import {AlertService} from "../shared/service/alert.service";
 })
 export class PurchasesComponent implements OnInit, OnDestroy {
 
-    subscr$: Subscription;
-    subscr2$: Subscription;
-    subscr3$: Subscription;
+    sub$: Subscription;
+    sub2$: Subscription;
+    sub3$: Subscription;
 
     listItems: ListItem[] = [];
-    searchPlaceholder: any = 'Название';
+    searchPlaceholder = 'Название';
     searchValue = '';
     searchField = 'title';
 
@@ -28,11 +29,13 @@ export class PurchasesComponent implements OnInit, OnDestroy {
 
 
     constructor(private listService: ListItemService,
-                private alert: AlertService) {
+                private alert: AlertService,
+                private title: Title) {
+        title.setTitle('Purchases | NeedToBuy');
     }
 
     ngOnInit(): void {
-        this.subscr$ = this.listService.getAllItems().subscribe(items => {
+        this.sub$ = this.listService.getAllItems().subscribe(items => {
             if (!items) {
                 this.isEmpty = true
             }
@@ -65,7 +68,7 @@ export class PurchasesComponent implements OnInit, OnDestroy {
 
     updateStatus(item: ListItem, status: boolean, id: number) {
         this.listItems[id].isCompleted = !status;
-        this.subscr3$ = this.listService.changeStatus({
+        this.sub3$ = this.listService.changeStatus({
             ...item,
             isCompleted: !status
         }).subscribe()
@@ -73,11 +76,10 @@ export class PurchasesComponent implements OnInit, OnDestroy {
 
     remove(id: string, $event: MouseEvent) {
         $event.stopPropagation();
-        this.subscr2$ = this.listService.remove(id).subscribe(() => {
+        this.sub2$ = this.listService.removeItem(id).subscribe(() => {
             this.listItems = this.listItems.filter(item => item.id !== id)
             this.alert.danger('Покупка была удалена')
         })
-        console.log(this.listItems.length)
         if (this.listItems.length == 1) {
             this.isEmpty = true
         }
@@ -98,14 +100,14 @@ export class PurchasesComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy() {
-        if (this.subscr$) {
-            this.subscr$.unsubscribe()
+        if (this.sub$) {
+            this.sub$.unsubscribe()
         }
-        if (this.subscr2$) {
-            this.subscr2$.unsubscribe()
+        if (this.sub2$) {
+            this.sub2$.unsubscribe()
         }
-        if (this.subscr3$) {
-            this.subscr3$.unsubscribe()
+        if (this.sub3$) {
+            this.sub3$.unsubscribe()
         }
     }
 }

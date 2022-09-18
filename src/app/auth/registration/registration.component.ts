@@ -8,12 +8,14 @@ import {Subscription} from "rxjs";
 import {User} from '../../shared/model/model.user';
 import {AuthService} from '../../shared/services/auth.service';
 import {MY_IDEAL_EMAIL_REGEXP} from '../../shared/patterns';
+import {fadeStateTrigger} from "../../shared/animations/fide.animation";
 
 
 @Component({
     selector: 'app-registration',
     templateUrl: './registration.component.html',
     styleUrls: ['./registration.component.scss'],
+    animations: [fadeStateTrigger]
 })
 export class RegistrationComponent implements OnInit, OnDestroy {
 
@@ -30,6 +32,7 @@ export class RegistrationComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit(): void {
+
         this.form = new FormGroup<any>({
             email: new FormControl(
                 null,
@@ -50,9 +53,9 @@ export class RegistrationComponent implements OnInit, OnDestroy {
         const user = new User(email, name);
 
         this.auth.createUserWithEmailAndPassword(email, password).then((userCredential) => {
-
-            console.log('reg userID', userCredential.user.uid)
             this.authService.createUser(user, userCredential.user.uid);
+            this.auth.signOut();
+
             this.router.navigate(['/login'], {
                 queryParams: {
                     nowCanLogin: true,

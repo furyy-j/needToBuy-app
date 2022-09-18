@@ -15,8 +15,9 @@ import {
 } from '@angular/fire/compat/database';
 import { AngularFireModule } from '@angular/fire/compat';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
-import { registerLocaleData } from '@angular/common';
+import {CommonModule, registerLocaleData} from '@angular/common';
 import localeRU from '@angular/common/locales/ru-UA';
+import { ServiceWorkerModule } from '@angular/service-worker';
 registerLocaleData(localeRU);
 
 
@@ -26,7 +27,6 @@ registerLocaleData(localeRU);
   imports: [
     HttpClientModule,
     BrowserModule,
-    HttpClientModule,
     AuthModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -34,6 +34,12 @@ registerLocaleData(localeRU);
     provideAuth(() => getAuth()),
     AngularFireDatabaseModule,
     provideFirestore(() => getFirestore()),
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    }),
   ],
   providers: [AngularFireDatabase,{ provide: LOCALE_ID, useValue: 'ru-UA'},],
   bootstrap: [AppComponent],

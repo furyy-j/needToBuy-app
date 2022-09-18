@@ -22,9 +22,8 @@ export class LoginComponent implements OnInit {
         private router: Router,
         private title: Title,
         private route: ActivatedRoute,
-
     ) {
-        title.setTitle('Вход | Family Budget');
+        title.setTitle('Вход | NeedToBuy');
     }
 
     ngOnInit(): void {
@@ -37,8 +36,14 @@ export class LoginComponent implements OnInit {
                         text: 'Теперь вы можете зайти в систему',
                         type: 'success'
                     });
-                } else {
-                    if(params['accessDenied']){
+                }
+                if (params['timedOut']) {
+                    this.showMessage({
+                        text: 'Время сессии истекло',
+                        type: 'warning'
+                    });
+                }else {
+                    if (params['accessDenied']) {
                         this.showMessage({
                             text: 'Для работы с системой вам нужно войти',
                             type: 'warning'
@@ -56,7 +61,7 @@ export class LoginComponent implements OnInit {
         });
     }
 
-     private showMessage(message: Message) {
+    private showMessage(message: Message) {
         this.message = message;
         window.setTimeout(() => {
             this.message.text = '';
@@ -65,22 +70,24 @@ export class LoginComponent implements OnInit {
 
     onSubmit() {
         const {email, password} = this.form.value;
-
         this.auth
-            .signInWithEmailAndPassword(email, password, )
-            .then((user) => {
-
-                console.log('loguID',user.user.email)
+            .signInWithEmailAndPassword(email, password,)
+            .then(() => {
                 this.router.navigate(['/system']);
+                setTimeout(()=>this.auth.signOut().then(() => this.router.navigate([''],{
+                    queryParams: {
+                        timedOut: true,
+                    }
+                })),600000);
             })
-            .catch((error)=>{
+            .catch((error) => {
                 if (error.code === 'auth/wrong-password') {
                     this.showMessage({
                         text: 'Пароль не верный',
                         type: 'danger'
                     })
                 }
-                if (error.code === 'auth/user-not-found') {
+                if (error.code === 'auth/user-not-found-page') {
                     this.showMessage({
                         text: 'Пользователя не существует',
                         type: 'danger'
@@ -89,5 +96,6 @@ export class LoginComponent implements OnInit {
                     console.log(error.code);
                 }
             });
+
     }
 }

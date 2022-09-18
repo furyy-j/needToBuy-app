@@ -22,10 +22,10 @@
       <span *ngIf="form.get('email')?.['errors']?.['pattern']">
         Введите корректный Email
       </span>
-      <span *ngIf="form.get('email')?.['errors']?.['forbiddenEmail']">
-        Данный email уже зарегистрирован
-      </span>
-    </span>
+		  <span *ngIf="form.get('email')?.['errors']?.['forbiddenEmail']">
+			Данный email уже зарегистрирован
+		  </span>
+		</span>
 	</div>
 	<div
 			class="form-group"
@@ -94,13 +94,10 @@
 					type="checkbox"
 					formControlName="agree"
 			/>
-			<span>Согласен с</span>
+			<span>Согласен с правилами</span>
 		</label>
-		<a
-				style="font-style: italic; margin-left: -5px"
-				[routerLink]="'/rules-page'"
-		>правилами</a
-		>
+<!--		<a class="options" href="{{rulesUrl}}" download>правилами</a>-->
+
 	</div>
 	<div class="form-group">
 		<button

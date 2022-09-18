@@ -1,0 +1,28 @@
+<div class="text-center" *ngIf="!cardItem">
+	<app-loader></app-loader>
+</div>
+<div *ngIf="cardItem">
+	<div class="title-block">
+		<h3 class="title">
+			<a [routerLink]="['/system/cards']"><i class="fa fa-arrow-left"></i></a>
+			Детальная информация
+			<span class="sparkline bar"></span>
+		</h3>
+	</div>
+	<section class="section">
+		<div class="row">
+			<div class="col-xs-6 col-xs-offset-3">
+				<div class="card mobile" style="background: #2aabd2">
+
+					<div class="card-block">
+						<h3 class="text-center title-design">{{cardItem.title}}</h3>
+						<div class="card-body text-center card-barcode">
+							<ngx-barcode class="barcode" [bc-value]="cardItem.number.slice(0,13)" [bc-width]="3"
+										 [bc-display-value]="true"></ngx-barcode>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>

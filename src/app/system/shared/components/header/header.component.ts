@@ -16,21 +16,18 @@ export class HeaderComponent implements OnInit {
     date: Date = new Date();
 
 
-
     constructor(private auth: AngularFireAuth,
                 private router: Router
-                ) {
+    ) {
     }
 
     ngOnInit(): void {
-
-
     }
 
     onLogout() {
-        localStorage.clear();
-        this.auth.signOut();
-        this.router.navigate(['']);
+
+        this.auth.signOut().then(() => this.router.navigate(['']));
+
     }
 
 }

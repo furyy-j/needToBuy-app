@@ -1,8 +1,8 @@
-<div class="text-center" *ngIf="!listItem">Loading...</div>
+<div class="text-center" *ngIf="!listItem"><app-loader></app-loader></div>
 <div *ngIf="listItem">
 	<div class="title-block">
 		<h3 class="title">
-			<a [routerLink]="['/system/purchases-page']"><i class="fa fa-arrow-left"></i></a>
+			<a [routerLink]="['/system/purchases']"><i class="fa fa-arrow-left"></i></a>
 			 Детальная информация
 			<span class="sparkline bar"></span>
 		</h3>

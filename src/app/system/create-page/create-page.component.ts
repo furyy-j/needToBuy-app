@@ -5,21 +5,23 @@ import {ListItem} from "../shared/models/list-item.model";
 import {ListItemService} from "../shared/service/list-item.service";
 import {Message} from "../../shared/model/message.model";
 import {AlertService} from "../shared/service/alert.service";
+import {Title} from "@angular/platform-browser";
 
 
 @Component({
-    selector: 'app-add-product-page',
-    templateUrl: './add-product-page.component.html',
-    styleUrls: ['./add-product-page.component.scss'],
+    selector: 'app-create-page',
+    templateUrl: './create-page.component.html',
+    styleUrls: ['./create-page.component.scss'],
 })
-export class AddProductPageComponent implements OnInit {
+export class CreatePageComponent implements OnInit {
 
     priority = priority;
     countType = countType;
     message!: Message;
 
     constructor(private listItemService: ListItemService,
-                private alert: AlertService) {
+                private alert: AlertService,
+                private title: Title) { title.setTitle('Create | NeedToBuy');
     }
 
     ngOnInit() {
@@ -40,7 +42,7 @@ export class AddProductPageComponent implements OnInit {
             date: new Date(),
             isCompleted: false,
         }
-        this.listItemService.create(listItem).subscribe(() => {
+        this.listItemService.createCard(listItem).subscribe(() => {
             this.alert.success('Покупка добавлена в список')
             form.resetForm({ countType: 'шт',amount: '1' ,priority:'warning'})
         })

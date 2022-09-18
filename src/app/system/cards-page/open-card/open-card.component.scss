@@ -1,0 +1,28 @@
+.card-barcode {
+  border-radius: 10px;
+  background: #fff;
+}
+.card{
+  min-width: 374px;
+}
+
+.title-design {
+  color: #fff;
+  padding: 10px 0 15px 0;
+  font-weight: bold;
+}
+
+@media screen and (max-width: 700px){
+  .mobile{
+    margin: 0 auto 0 -110px;
+  }
+  .card{width: 300px;}
+
+}
+
+@media screen and (max-width: 465px){
+  .card{
+    transform: rotate(-0.25turn);
+    margin: 100px -120px -120px -130px;
+  }
+}
