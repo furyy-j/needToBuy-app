@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "need-to-buy",
     "public": "dist/need-to-buy",
     "ignore": [
       "firebase.json",
